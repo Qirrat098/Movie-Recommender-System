@@ -51,3 +51,5 @@ def fetch_director(obj):
 movies['crew'] = movies['crew'].apply(fetch_director)
 movies.head()
 movies['overview'] = movies['overview'].apply(lambda x:x.split())
+movies.head()
+movies['genres'].apply(lambda x:[i.replace(" ", "") for i in x])
