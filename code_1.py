@@ -61,3 +61,6 @@ movies['tags'] = movies['overview'] + movies['genres'] + movies['keywords'] + mo
 movies.head()
 new_df = movies[['movie_id', 'title', 'tags']]
 print(new_df.head())
+new_df['tags'] = new_df['tags'].apply(lambda x:"".join(x))
+new_df['tags'][2]
+new_df['tags'] = new_df['tags'].apply(lambda x:x.lower())
