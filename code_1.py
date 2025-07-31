@@ -41,3 +41,13 @@ def convert2(obj):
     
 movies["cast"] = movies["cast"].apply(convert2)
 movies["crew"][0]
+def fetch_director(obj):
+    L = []
+    for i in ast.literal_eval(obj):
+        if i['job'] == 'Director':
+            L.append(i['name'])
+            break
+    return L
+movies['crew'] = movies['crew'].apply(fetch_director)
+movies.head()
+movies['overview'] = movies['overview'].apply(lambda x:x.split())
