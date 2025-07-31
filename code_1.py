@@ -57,3 +57,7 @@ movies['keywords'] = movies['keywords'].apply(lambda x:[i.replace(" ", "") for i
 movies['cast'] = movies['cast'].apply(lambda x:[i.replace(" ", "") for i in x])
 movies['crew'] = movies['crew'].apply(lambda x:[i.replace(" ", "") for i in x])
 movies.head()
+movies['tags'] = movies['overview'] + movies['genres'] + movies['keywords'] + movies['cast'] + movies['crew']
+movies.head()
+new_df = movies[['movie_id', 'title', 'tags']]
+print(new_df.head())
