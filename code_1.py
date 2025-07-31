@@ -64,3 +64,4 @@ print(new_df.head())
 new_df['tags'] = new_df['tags'].apply(lambda x:"".join(x))
 new_df['tags'][2]
 new_df['tags'] = new_df['tags'].apply(lambda x:x.lower())
+new_df.head()
