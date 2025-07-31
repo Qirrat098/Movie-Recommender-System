@@ -9,3 +9,6 @@ print(movies.shape)
 #genres, id, keywords, title, overview, cast, crew
 movies = movies[['movie_id','title','overview','genres','keywords','cast','crew']]
 print(movies.head(1))
+movies.isnull().sum()
+movies.dropna(inplace = True)
+movies.duplicated().sum()
