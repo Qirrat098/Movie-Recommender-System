@@ -24,3 +24,20 @@ def convert(obj):
     for i in ast.literal_eval(obj):
         L.append(i['name'])
     return L
+movies['genres'].apply(convert)
+movies.head()
+movies['keywords'] = movies['keywords'].apply(convert)
+movies.head()
+def convert2(obj):
+    L = []
+    counter = 0
+    for i in ast.literal_eval(obj):
+        if counter != 3: 
+            L.append(i['name'])
+            counter += 1
+        else:
+            break
+    return L
+    
+movies["cast"] = movies["cast"].apply(convert2)
+movies["crew"][0]
