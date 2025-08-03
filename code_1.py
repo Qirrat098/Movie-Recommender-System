@@ -65,3 +65,36 @@ new_df['tags'] = new_df['tags'].apply(lambda x:"".join(x))
 new_df['tags'][2]
 new_df['tags'] = new_df['tags'].apply(lambda x:x.lower())
 new_df.head() 
+from sklearn.feature_extraction.text import CountVectorizer
+cv = CountVectorizer(max_features=5000, stop_words= 'english')
+vectors = cv.fit_transform(new_df['tags']).toarray()
+vectors
+vectors[0]
+cv.get_feature_names_out()
+from nltk.stem.porter import PorterStemmer
+ps = PorterStemmer()
+def stem(text):
+    y = []
+
+    for i in text.split():
+       y.append( ps.stem(i))
+    return " ".join(y)
+ps.stem('loved')
+new_df['tags'] = new_df['tags'].apply(stem)
+new_df['tags']
+cv.get_feature_names_out()
+from sklearn.metrics.pairwise import cosine_similarity
+similarity = cosine_similarity(vectors)
+similarity[2]
+def recommend(movie):
+    movie_index = new_df [new_df['title'] == movie].index[0]
+    distances = similarity[movie_index]
+    movies_list = sorted(list(enumerate(distances)), reverse=True, key = lambda x:x[1])[1:6]
+
+    for i in movies_list:
+        print(new_df.iloc[i[0]].title)
+recommend('Spectre')
+new_df.iloc[1216].title
+import pickle 
+pickle.dump(new_df, open('movies.pkl', 'wb'))
+pickle.dump(new_df.to_dict(), open('movie_dict.pkl' , 'wb'))
