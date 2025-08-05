@@ -120,3 +120,4 @@ with open('movies.pkl', 'wb') as f:
 
 with open('movie_dict.pkl', 'wb') as f:
     pickle.dump(new_df.to_dict(), f)
+    sd
